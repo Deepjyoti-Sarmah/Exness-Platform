@@ -1,12 +1,15 @@
 {
   "name": "price_poller",
-  "scripts": {
-    "dev": "bun run --hot src/index.ts"
+  "module": "index.ts",
+  "type": "module",
+  "script": {
+    "start": "bun run index.ts"
   },
-  "dependencies": {
-    "hono": "^4.9.6"
-  },
+  "private": true,
   "devDependencies": {
     "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
   }
 }
