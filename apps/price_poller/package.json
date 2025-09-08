@@ -1,11 +1,14 @@
 {
-  "name": "price_poller",
+  "name": "@repo/price_poller",
   "module": "index.ts",
   "type": "module",
   "script": {
     "start": "bun run index.ts"
   },
   "private": true,
+  "dependencies": {
+    "@repo/types": "*"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
