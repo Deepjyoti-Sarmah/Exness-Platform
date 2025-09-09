@@ -1,8 +1,11 @@
 {
-  "name": "batch_uploader",
+  "name": "@repo/batch_uploader",
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "dependencies": {
+    "@repo/types": "*"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
