@@ -1,12 +1,13 @@
 {
-  "name": "@repo/price_poller",
+  "name": "@repo/redis",
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "exports": {
+    ".": "./index.ts"
+  },
   "dependencies": {
-    "@repo/types": "*",
-    "@repo/commons": "*",
-    "@repo/redis": "*"
+    "@repo/types": "*"
   },
   "devDependencies": {
     "@types/bun": "latest"

@@ -32,6 +32,7 @@
       "name": "@repo/price_poller",
       "dependencies": {
         "@repo/commons": "*",
+        "@repo/redis": "*",
         "@repo/types": "*",
       },
       "devDependencies": {
@@ -65,6 +66,18 @@
         "globals": "^16.3.0",
         "typescript": "^5.9.2",
         "typescript-eslint": "^8.40.0",
+      },
+    },
+    "packages/redis": {
+      "name": "@repo/redis",
+      "dependencies": {
+        "@repo/types": "*",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
       },
     },
     "packages/types": {
@@ -202,6 +215,8 @@
     "@repo/eslint-config": ["@repo/eslint-config@workspace:packages/eslint-config"],
 
     "@repo/price_poller": ["@repo/price_poller@workspace:apps/price_poller"],
+
+    "@repo/redis": ["@repo/redis@workspace:packages/redis"],
 
     "@repo/types": ["@repo/types@workspace:packages/types"],
 
