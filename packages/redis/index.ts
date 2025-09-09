@@ -15,17 +15,17 @@ PublishClient.onclose = (error) => {
 };
 
 // Consumming data from queue
-// export const SubscribClient = new RedisClient(
-//   process.env.REDIS_URL || "redis://localhost:6379",
-// );
+export const SubscribClient = new RedisClient(
+  process.env.REDIS_URL || "redis://localhost:6379",
+);
 
-// SubscribClient.onconnect = () => {
-//   console.log("Connected to Subscriber redis client");
-// };
+SubscribClient.onconnect = () => {
+  console.log("Connected to Subscriber redis client");
+};
 
-// SubscribClient.onclose = (error) => {
-//   console.log("Disconnected from Subscriber Redis Client Server", error);
-// };
+SubscribClient.onclose = (error) => {
+  console.log("Disconnected from Subscriber Redis Client Server", error);
+};
 
 export async function PublishToRedisQueue(
   kineData: Kline,
@@ -52,6 +52,6 @@ export async function PublishToRedisQueue(
 }
 
 await PublishClient.connect();
-// await SubscribClient.connect();
+await SubscribClient.connect();
 
 export { RedisClient };
