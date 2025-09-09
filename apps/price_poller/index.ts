@@ -1,4 +1,5 @@
-import type { Kline } from "@repo/types";
+import type { Kline } from "@repo/types/client";
+import { PRICE_DECIMAL, VOLUME_DECIMAL } from "@repo/commons/client";
 
 const symbol = "btcusdt";
 const interval = "1m";
@@ -17,11 +18,13 @@ ws.addEventListener("message", (event) => {
     event: data.e,
     eventTime: data.E,
     startTime: data.k.t,
-    open: Math.round(Number(parseFloat(data.k.o).toFixed(2)) * 100),
-    close: Math.round(Number(parseFloat(data.k.c).toFixed(2)) * 100),
-    high: Math.round(Number(parseFloat(data.k.h).toFixed(2)) * 100),
-    low: Math.round(Number(parseFloat(data.k.h).toFixed(2)) * 100),
-    volume: Math.round(Number(parseFloat(data.k.v).toFixed(5)) * 100000),
+    open: Math.round(Number(parseFloat(data.k.o).toFixed(2)) * PRICE_DECIMAL),
+    close: Math.round(Number(parseFloat(data.k.c).toFixed(2)) * PRICE_DECIMAL),
+    high: Math.round(Number(parseFloat(data.k.h).toFixed(2)) * PRICE_DECIMAL),
+    low: Math.round(Number(parseFloat(data.k.h).toFixed(2)) * PRICE_DECIMAL),
+    volume: Math.round(
+      Number(parseFloat(data.k.v).toFixed(5)) * VOLUME_DECIMAL,
+    ),
     isClose: data.k.x,
   };
   console.log("Kline object", klineObject);
