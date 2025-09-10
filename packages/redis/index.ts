@@ -51,6 +51,15 @@ export async function PublishToRedisQueue(
   }
 }
 
+export async function GetQueueLength(queueKey: string) {
+  try {
+    return await SubscribClient.llen(queueKey);
+  } catch (error) {
+    console.error("Error getting queue length:", error);
+    return 0;
+  }
+}
+
 await PublishClient.connect();
 await SubscribClient.connect();
 
