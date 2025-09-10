@@ -35,8 +35,6 @@ async function processBatch() {
   } finally {
     isProcessing = false;
   }
-
-  //add it to timescaleDB
 }
 
 function setBatchTimeout() {
@@ -74,7 +72,7 @@ async function addToBatch(rawData: string) {
       `Added to batch. Current batch size:  ${batch.length}/${BATCH_SIZE}`,
     );
 
-    // let the 1st item be processed
+    // set the batchTimer for the 1st item
     if (batch.length === 1) {
       setBatchTimeout();
     }
@@ -96,13 +94,10 @@ async function startBatchProcess() {
   const monitorQueueLength = setInterval(async () => {
     const queueLength = await GetQueueLength(REDIS_QUEUE_KEY);
     if (queueLength > 0) {
-      console.log(
-        `📊 Queue length: ${queueLength}, Batch size: ${batch.length}`,
-      );
+      console.log(` Queue length: ${queueLength}, Batch size: ${batch.length}`);
     }
   }, 30000);
 
-  // infinite loop,
   while (true) {
     try {
       // take out from queue

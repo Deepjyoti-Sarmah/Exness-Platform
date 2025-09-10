@@ -53,7 +53,7 @@ function handleReconnect() {
 
   reconnectAttempts++;
   console.log(
-    `Attempting to reconnect (${reconnectAttempts}/${maxReconnectAttempsts} in ${reconnectDelay} ms`,
+    `Attempting to reconnect (${reconnectAttempts}/${maxReconnectAttempsts} in ${reconnectDelay}) ms`,
   );
 
   setTimeout(() => {
