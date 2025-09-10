@@ -32,7 +32,7 @@ export async function PublishToRedisQueue(
   symbol: string,
   interval: string,
   queueKey: string,
-) {
+): Promise<void> {
   try {
     const seralizedData = JSON.stringify({
       ...kineData,
@@ -51,7 +51,7 @@ export async function PublishToRedisQueue(
   }
 }
 
-export async function GetQueueLength(queueKey: string) {
+export async function GetQueueLength(queueKey: string): Promise<number> {
   try {
     return await SubscribClient.llen(queueKey);
   } catch (error) {

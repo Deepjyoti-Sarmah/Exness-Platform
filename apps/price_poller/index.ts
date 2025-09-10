@@ -15,7 +15,7 @@ let reconnectAttempts = 0;
 const maxReconnectAttempsts = 5;
 let reconnectDelay = 1000;
 
-async function handlerMessages(messageData: string) {
+async function handlerMessages(messageData: string): Promise<void> {
   try {
     let data = JSON.parse(messageData);
 
@@ -45,7 +45,7 @@ async function handlerMessages(messageData: string) {
   }
 }
 
-function handleReconnect() {
+function handleReconnect(): void {
   if (reconnectAttempts >= maxReconnectAttempsts) {
     console.error("Max reconnection attepts reached. Stopped.");
     return;
@@ -63,7 +63,7 @@ function handleReconnect() {
   reconnectDelay = Math.min(reconnectDelay * 2, 3000); //Max 30 sec
 }
 
-function setupEventListeners(ws: WebSocket) {
+function setupEventListeners(ws: WebSocket): void {
   if (!ws) return;
 
   ws.addEventListener("open", (event) => {
@@ -91,7 +91,7 @@ function setupEventListeners(ws: WebSocket) {
   });
 }
 
-function connect() {
+function connect(): void {
   try {
     ws = new WebSocket(BINANCE_STEAM_URL);
     setupEventListeners(ws);
@@ -101,7 +101,7 @@ function connect() {
   }
 }
 
-function closeConnection() {
+function closeConnection(): void {
   if (ws) {
     ws.close();
     ws = null;
@@ -109,12 +109,12 @@ function closeConnection() {
 }
 
 //Price Poller
-function startPricePoller() {
+function startPricePoller(): void {
   console.log("Starting price poller...");
   connect();
 }
 
-function setupGracefulShutdown() {
+function setupGracefulShutdown(): void {
   process.on("SIGINT", () => {
     console.log("Received SIGINT. Graceful shutdown");
     closeConnection();

@@ -11,7 +11,7 @@ let isProcessing = false;
 
 async function insertIntoTimescalDB(klineDB: KlineDbData[]) {}
 
-async function processBatch() {
+async function processBatch(): Promise<void> {
   if (isProcessing || batch.length === 0) {
     return;
   }
@@ -37,7 +37,7 @@ async function processBatch() {
   }
 }
 
-function setBatchTimeout() {
+function setBatchTimeout(): void {
   if (batchTimer) {
     clearTimeout(batchTimer);
   }
@@ -50,7 +50,7 @@ function setBatchTimeout() {
   }, BATCH_TIMEOUT);
 }
 
-async function addToBatch(rawData: string) {
+async function addToBatch(rawData: string): Promise<void> {
   try {
     // process the data
     const queueData: KlineQueueData = JSON.parse(rawData);
@@ -87,7 +87,7 @@ async function addToBatch(rawData: string) {
   }
 }
 
-async function startBatchProcess() {
+async function startBatchProcess(): Promise<void> {
   console.log("Starting batch processing...");
   console.log(`Batch size: ${BATCH_SIZE}, Timeout: ${BATCH_TIMEOUT}ms`);
 
@@ -113,7 +113,7 @@ async function startBatchProcess() {
   }
 }
 
-function setupGracefullShutdown() {
+function setupGracefullShutdown(): void {
   const gracefulShutdown = async (signal: string) => {
     console.log(
       `Receive ${signal}. Gracefully shutting down batch uploader...`,
