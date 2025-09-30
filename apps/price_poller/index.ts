@@ -4,7 +4,6 @@ import {
   VOLUME_DECIMAL,
   REDIS_QUEUE_KEY,
 } from "@repo/commons/client";
-import { PublishClient, PublishToRedisQueue } from "@repo/redis";
 
 const SYMBOL = "btcusdt";
 const INTERVAL = "1m";
